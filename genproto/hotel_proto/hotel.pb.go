@@ -28,6 +28,17 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type Hotel struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
+	Phone                string   `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone"`
+	Email                string   `protobuf:"bytes,4,opt,name=email,proto3" json:"email"`
+	License              string   `protobuf:"bytes,5,opt,name=license,proto3" json:"license"`
+	ImageUrl             string   `protobuf:"bytes,6,opt,name=image_url,json=imageUrl,proto3" json:"image_url"`
+	Country              string   `protobuf:"bytes,7,opt,name=country,proto3" json:"country"`
+	City                 string   `protobuf:"bytes,8,opt,name=city,proto3" json:"city"`
+	Province             string   `protobuf:"bytes,9,opt,name=province,proto3" json:"province"`
+	Address              string   `protobuf:"bytes,10,opt,name=address,proto3" json:"address"`
+	CreatedAt            string   `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt            string   `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -73,22 +84,411 @@ func (m *Hotel) GetId() string {
 	return ""
 }
 
+func (m *Hotel) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Hotel) GetPhone() string {
+	if m != nil {
+		return m.Phone
+	}
+	return ""
+}
+
+func (m *Hotel) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *Hotel) GetLicense() string {
+	if m != nil {
+		return m.License
+	}
+	return ""
+}
+
+func (m *Hotel) GetImageUrl() string {
+	if m != nil {
+		return m.ImageUrl
+	}
+	return ""
+}
+
+func (m *Hotel) GetCountry() string {
+	if m != nil {
+		return m.Country
+	}
+	return ""
+}
+
+func (m *Hotel) GetCity() string {
+	if m != nil {
+		return m.City
+	}
+	return ""
+}
+
+func (m *Hotel) GetProvince() string {
+	if m != nil {
+		return m.Province
+	}
+	return ""
+}
+
+func (m *Hotel) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+func (m *Hotel) GetCreatedAt() string {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return ""
+}
+
+func (m *Hotel) GetUpdatedAt() string {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return ""
+}
+
+type GetAllOwnerRes struct {
+	Owners               []*Owner `protobuf:"bytes,1,rep,name=owners,proto3" json:"owners"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetAllOwnerRes) Reset()         { *m = GetAllOwnerRes{} }
+func (m *GetAllOwnerRes) String() string { return proto.CompactTextString(m) }
+func (*GetAllOwnerRes) ProtoMessage()    {}
+func (*GetAllOwnerRes) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6141e598f4927cc0, []int{1}
+}
+func (m *GetAllOwnerRes) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetAllOwnerRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetAllOwnerRes.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetAllOwnerRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAllOwnerRes.Merge(m, src)
+}
+func (m *GetAllOwnerRes) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetAllOwnerRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAllOwnerRes.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetAllOwnerRes proto.InternalMessageInfo
+
+func (m *GetAllOwnerRes) GetOwners() []*Owner {
+	if m != nil {
+		return m.Owners
+	}
+	return nil
+}
+
+type GetAllOwnerReq struct {
+	Page                 int64    `protobuf:"varint,1,opt,name=page,proto3" json:"page"`
+	Limit                int64    `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetAllOwnerReq) Reset()         { *m = GetAllOwnerReq{} }
+func (m *GetAllOwnerReq) String() string { return proto.CompactTextString(m) }
+func (*GetAllOwnerReq) ProtoMessage()    {}
+func (*GetAllOwnerReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6141e598f4927cc0, []int{2}
+}
+func (m *GetAllOwnerReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetAllOwnerReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetAllOwnerReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetAllOwnerReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAllOwnerReq.Merge(m, src)
+}
+func (m *GetAllOwnerReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetAllOwnerReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAllOwnerReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetAllOwnerReq proto.InternalMessageInfo
+
+func (m *GetAllOwnerReq) GetPage() int64 {
+	if m != nil {
+		return m.Page
+	}
+	return 0
+}
+
+func (m *GetAllOwnerReq) GetLimit() int64 {
+	if m != nil {
+		return m.Limit
+	}
+	return 0
+}
+
+type GetOwnerByColumnItemReq struct {
+	Column               string   `protobuf:"bytes,1,opt,name=column,proto3" json:"column"`
+	Item                 string   `protobuf:"bytes,2,opt,name=item,proto3" json:"item"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetOwnerByColumnItemReq) Reset()         { *m = GetOwnerByColumnItemReq{} }
+func (m *GetOwnerByColumnItemReq) String() string { return proto.CompactTextString(m) }
+func (*GetOwnerByColumnItemReq) ProtoMessage()    {}
+func (*GetOwnerByColumnItemReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6141e598f4927cc0, []int{3}
+}
+func (m *GetOwnerByColumnItemReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetOwnerByColumnItemReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetOwnerByColumnItemReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetOwnerByColumnItemReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetOwnerByColumnItemReq.Merge(m, src)
+}
+func (m *GetOwnerByColumnItemReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetOwnerByColumnItemReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetOwnerByColumnItemReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetOwnerByColumnItemReq proto.InternalMessageInfo
+
+func (m *GetOwnerByColumnItemReq) GetColumn() string {
+	if m != nil {
+		return m.Column
+	}
+	return ""
+}
+
+func (m *GetOwnerByColumnItemReq) GetItem() string {
+	if m != nil {
+		return m.Item
+	}
+	return ""
+}
+
+type Owner struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	FullName             string   `protobuf:"bytes,2,opt,name=full_name,json=fullName,proto3" json:"full_name"`
+	Email                string   `protobuf:"bytes,3,opt,name=email,proto3" json:"email"`
+	Password             string   `protobuf:"bytes,4,opt,name=password,proto3" json:"password"`
+	Birthday             string   `protobuf:"bytes,5,opt,name=birthday,proto3" json:"birthday"`
+	Phone                string   `protobuf:"bytes,6,opt,name=phone,proto3" json:"phone"`
+	ImageUrl             string   `protobuf:"bytes,7,opt,name=image_url,json=imageUrl,proto3" json:"image_url"`
+	Role                 string   `protobuf:"bytes,8,opt,name=role,proto3" json:"role"`
+	RefreshToken         string   `protobuf:"bytes,9,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token"`
+	CreatedAt            string   `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt            string   `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Owner) Reset()         { *m = Owner{} }
+func (m *Owner) String() string { return proto.CompactTextString(m) }
+func (*Owner) ProtoMessage()    {}
+func (*Owner) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6141e598f4927cc0, []int{4}
+}
+func (m *Owner) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Owner) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Owner.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Owner) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Owner.Merge(m, src)
+}
+func (m *Owner) XXX_Size() int {
+	return m.Size()
+}
+func (m *Owner) XXX_DiscardUnknown() {
+	xxx_messageInfo_Owner.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Owner proto.InternalMessageInfo
+
+func (m *Owner) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Owner) GetFullName() string {
+	if m != nil {
+		return m.FullName
+	}
+	return ""
+}
+
+func (m *Owner) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *Owner) GetPassword() string {
+	if m != nil {
+		return m.Password
+	}
+	return ""
+}
+
+func (m *Owner) GetBirthday() string {
+	if m != nil {
+		return m.Birthday
+	}
+	return ""
+}
+
+func (m *Owner) GetPhone() string {
+	if m != nil {
+		return m.Phone
+	}
+	return ""
+}
+
+func (m *Owner) GetImageUrl() string {
+	if m != nil {
+		return m.ImageUrl
+	}
+	return ""
+}
+
+func (m *Owner) GetRole() string {
+	if m != nil {
+		return m.Role
+	}
+	return ""
+}
+
+func (m *Owner) GetRefreshToken() string {
+	if m != nil {
+		return m.RefreshToken
+	}
+	return ""
+}
+
+func (m *Owner) GetCreatedAt() string {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return ""
+}
+
+func (m *Owner) GetUpdatedAt() string {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*Hotel)(nil), "hotel.Hotel")
+	proto.RegisterType((*GetAllOwnerRes)(nil), "hotel.GetAllOwnerRes")
+	proto.RegisterType((*GetAllOwnerReq)(nil), "hotel.GetAllOwnerReq")
+	proto.RegisterType((*GetOwnerByColumnItemReq)(nil), "hotel.GetOwnerByColumnItemReq")
+	proto.RegisterType((*Owner)(nil), "hotel.Owner")
 }
 
 func init() { proto.RegisterFile("hotel_proto/hotel.proto", fileDescriptor_6141e598f4927cc0) }
 
 var fileDescriptor_6141e598f4927cc0 = []byte{
-	// 126 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xcf, 0xc8, 0x2f, 0x49,
-	0xcd, 0x89, 0x2f, 0x28, 0xca, 0x2f, 0xc9, 0xd7, 0x07, 0xb3, 0xf5, 0xc0, 0x6c, 0x21, 0x56, 0x30,
-	0x47, 0x49, 0x9c, 0x8b, 0xd5, 0x03, 0xc4, 0x10, 0xe2, 0xe3, 0x62, 0xca, 0x4c, 0x91, 0x60, 0x54,
-	0x60, 0xd4, 0xe0, 0x0c, 0x62, 0xca, 0x4c, 0x31, 0x32, 0xe1, 0xe2, 0x01, 0x4b, 0x04, 0xa7, 0x16,
-	0x95, 0x65, 0x26, 0xa7, 0x0a, 0xa9, 0x70, 0xb1, 0x39, 0x17, 0xa5, 0x26, 0x96, 0xa4, 0x0a, 0xf1,
-	0xe8, 0x41, 0xcc, 0x01, 0x4b, 0x4b, 0xa1, 0xf0, 0x9c, 0x04, 0x4e, 0x3c, 0x92, 0x63, 0xbc, 0xf0,
-	0x48, 0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x19, 0x8f, 0xe5, 0x18, 0x92, 0xd8, 0xc0, 0xd6, 0x19,
-	0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x3a, 0x92, 0x32, 0x1b, 0x89, 0x00, 0x00, 0x00,
+	// 501 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x93, 0xc1, 0x6e, 0xd3, 0x40,
+	0x10, 0x86, 0x71, 0x12, 0x3b, 0xf1, 0x24, 0x54, 0x68, 0x85, 0xe8, 0x2a, 0x15, 0x51, 0x65, 0x38,
+	0x94, 0x4b, 0x91, 0x8a, 0x84, 0x04, 0xb7, 0xb4, 0x42, 0x85, 0x0b, 0x48, 0x01, 0xce, 0x96, 0x6b,
+	0x4f, 0x9b, 0x15, 0x6b, 0xaf, 0x59, 0xaf, 0x5b, 0xe5, 0x4d, 0x78, 0x08, 0x0e, 0x3c, 0x06, 0x47,
+	0x1e, 0x01, 0x85, 0x17, 0x41, 0x3b, 0xbb, 0x2e, 0x49, 0x2a, 0x71, 0xfb, 0xff, 0x7f, 0x3c, 0xa3,
+	0xf5, 0x7c, 0xbb, 0xb0, 0xbf, 0x54, 0x06, 0x65, 0x5a, 0x6b, 0x65, 0xd4, 0x73, 0xd2, 0xc7, 0xa4,
+	0x59, 0x48, 0x26, 0xf9, 0xd1, 0x83, 0xf0, 0xad, 0x55, 0x6c, 0x0f, 0x7a, 0xa2, 0xe0, 0xc1, 0x61,
+	0x70, 0x14, 0x2f, 0x7a, 0xa2, 0x60, 0x0c, 0x06, 0x55, 0x56, 0x22, 0xef, 0x51, 0x42, 0x9a, 0x3d,
+	0x84, 0xb0, 0x5e, 0xaa, 0x0a, 0x79, 0x9f, 0x42, 0x67, 0x6c, 0x8a, 0x65, 0x26, 0x24, 0x1f, 0xb8,
+	0x94, 0x0c, 0xe3, 0x30, 0x94, 0x22, 0xc7, 0xaa, 0x41, 0x1e, 0x52, 0xde, 0x59, 0x76, 0x00, 0xb1,
+	0x28, 0xb3, 0x2b, 0x4c, 0x5b, 0x2d, 0x79, 0x44, 0xb5, 0x11, 0x05, 0x9f, 0x35, 0xb5, 0xe5, 0xaa,
+	0xad, 0x8c, 0x5e, 0xf1, 0xa1, 0x6b, 0xf3, 0xd6, 0x1e, 0x28, 0x17, 0x66, 0xc5, 0x47, 0xee, 0x40,
+	0x56, 0xb3, 0x29, 0x8c, 0x6a, 0xad, 0xae, 0x45, 0x95, 0x23, 0x8f, 0xdd, 0xa4, 0xce, 0xdb, 0x49,
+	0x59, 0x51, 0x68, 0x6c, 0x1a, 0x0e, 0x6e, 0x92, 0xb7, 0xec, 0x31, 0x40, 0xae, 0x31, 0x33, 0x58,
+	0xa4, 0x99, 0xe1, 0x63, 0x2a, 0xc6, 0x3e, 0x99, 0x1b, 0x5b, 0x6e, 0xeb, 0xa2, 0x2b, 0x4f, 0x5c,
+	0xd9, 0x27, 0x73, 0x93, 0xbc, 0x84, 0xbd, 0x73, 0x34, 0x73, 0x29, 0x3f, 0xdc, 0x54, 0xa8, 0x17,
+	0xd8, 0xb0, 0xa7, 0x10, 0x29, 0xab, 0x1b, 0x1e, 0x1c, 0xf6, 0x8f, 0xc6, 0x27, 0x93, 0x63, 0xb7,
+	0x69, 0xf7, 0x81, 0xaf, 0x25, 0xaf, 0x77, 0xfa, 0xbe, 0xda, 0x3f, 0xaa, 0xb3, 0x2b, 0xa4, 0xa5,
+	0xf7, 0x17, 0xa4, 0xed, 0x32, 0xa5, 0x28, 0x85, 0xa1, 0xbd, 0xf7, 0x17, 0xce, 0x24, 0x6f, 0x60,
+	0xff, 0x1c, 0x0d, 0x35, 0x9e, 0xae, 0xce, 0x94, 0x6c, 0xcb, 0xea, 0x9d, 0xc1, 0xd2, 0x0e, 0x79,
+	0x04, 0x51, 0x4e, 0x81, 0x67, 0xe7, 0x9d, 0x1d, 0x2e, 0x0c, 0x96, 0x1d, 0x3f, 0xab, 0x93, 0xef,
+	0x3d, 0x08, 0x69, 0xc8, 0x1d, 0xda, 0x07, 0x10, 0x5f, 0xb6, 0x52, 0xa6, 0x1b, 0xc8, 0x47, 0x36,
+	0x78, 0xef, 0xb1, 0x3b, 0xc0, 0xfd, 0x4d, 0xc0, 0x76, 0xf7, 0x59, 0xd3, 0xdc, 0x28, 0x5d, 0x78,
+	0xf2, 0xb7, 0xde, 0xd6, 0x2e, 0x84, 0x36, 0xcb, 0x22, 0x5b, 0x79, 0xfa, 0xb7, 0xfe, 0xdf, 0x25,
+	0x8a, 0x36, 0x2f, 0xd1, 0xd6, 0xa5, 0x18, 0xee, 0x5c, 0x0a, 0x06, 0x03, 0xad, 0x24, 0x76, 0xe8,
+	0xad, 0x66, 0x4f, 0xe0, 0xbe, 0xc6, 0x4b, 0x8d, 0xcd, 0x32, 0x35, 0xea, 0x0b, 0x56, 0x9e, 0xff,
+	0xc4, 0x87, 0x9f, 0x6c, 0xb6, 0x43, 0x1a, 0xfe, 0x4f, 0x7a, 0xbc, 0x43, 0xfa, 0xe4, 0x15, 0x4c,
+	0x68, 0x5b, 0x1f, 0x51, 0x5f, 0x8b, 0x1c, 0xd9, 0x33, 0x18, 0x9f, 0x51, 0xaf, 0xdb, 0xe1, 0x16,
+	0xe6, 0xe9, 0x96, 0xb3, 0xad, 0xf4, 0xac, 0xee, 0xb4, 0xba, 0xc7, 0xd6, 0x7d, 0x4c, 0x6e, 0xba,
+	0xe5, 0x4e, 0x1f, 0xfc, 0x5c, 0xcf, 0x82, 0x5f, 0xeb, 0x59, 0xf0, 0x7b, 0x3d, 0x0b, 0xbe, 0xfd,
+	0x99, 0xdd, 0xbb, 0x88, 0xe8, 0xc9, 0xbe, 0xf8, 0x1b, 0x00, 0x00, 0xff, 0xff, 0x4f, 0x31, 0xa3,
+	0xda, 0xcd, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -99,11 +499,83 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
+// OwnerServiceClient is the client API for OwnerService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type OwnerServiceClient interface {
+	CreateOwner(ctx context.Context, in *Owner, opts ...grpc.CallOption) (*Owner, error)
+}
+
+type ownerServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewOwnerServiceClient(cc *grpc.ClientConn) OwnerServiceClient {
+	return &ownerServiceClient{cc}
+}
+
+func (c *ownerServiceClient) CreateOwner(ctx context.Context, in *Owner, opts ...grpc.CallOption) (*Owner, error) {
+	out := new(Owner)
+	err := c.cc.Invoke(ctx, "/hotel.OwnerService/CreateOwner", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// OwnerServiceServer is the server API for OwnerService service.
+type OwnerServiceServer interface {
+	CreateOwner(context.Context, *Owner) (*Owner, error)
+}
+
+// UnimplementedOwnerServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedOwnerServiceServer struct {
+}
+
+func (*UnimplementedOwnerServiceServer) CreateOwner(ctx context.Context, req *Owner) (*Owner, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOwner not implemented")
+}
+
+func RegisterOwnerServiceServer(s *grpc.Server, srv OwnerServiceServer) {
+	s.RegisterService(&_OwnerService_serviceDesc, srv)
+}
+
+func _OwnerService_CreateOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Owner)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OwnerServiceServer).CreateOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hotel.OwnerService/CreateOwner",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OwnerServiceServer).CreateOwner(ctx, req.(*Owner))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _OwnerService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "hotel.OwnerService",
+	HandlerType: (*OwnerServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateOwner",
+			Handler:    _OwnerService_CreateOwner_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "hotel_proto/hotel.proto",
+}
+
 // HotelServiceClient is the client API for HotelService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type HotelServiceClient interface {
-	Create(ctx context.Context, in *Hotel, opts ...grpc.CallOption) (*Hotel, error)
+	CreateHotel(ctx context.Context, in *Hotel, opts ...grpc.CallOption) (*Hotel, error)
 }
 
 type hotelServiceClient struct {
@@ -114,9 +586,9 @@ func NewHotelServiceClient(cc *grpc.ClientConn) HotelServiceClient {
 	return &hotelServiceClient{cc}
 }
 
-func (c *hotelServiceClient) Create(ctx context.Context, in *Hotel, opts ...grpc.CallOption) (*Hotel, error) {
+func (c *hotelServiceClient) CreateHotel(ctx context.Context, in *Hotel, opts ...grpc.CallOption) (*Hotel, error) {
 	out := new(Hotel)
-	err := c.cc.Invoke(ctx, "/hotel.HotelService/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotel.HotelService/CreateHotel", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -125,35 +597,35 @@ func (c *hotelServiceClient) Create(ctx context.Context, in *Hotel, opts ...grpc
 
 // HotelServiceServer is the server API for HotelService service.
 type HotelServiceServer interface {
-	Create(context.Context, *Hotel) (*Hotel, error)
+	CreateHotel(context.Context, *Hotel) (*Hotel, error)
 }
 
 // UnimplementedHotelServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedHotelServiceServer struct {
 }
 
-func (*UnimplementedHotelServiceServer) Create(ctx context.Context, req *Hotel) (*Hotel, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+func (*UnimplementedHotelServiceServer) CreateHotel(ctx context.Context, req *Hotel) (*Hotel, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateHotel not implemented")
 }
 
 func RegisterHotelServiceServer(s *grpc.Server, srv HotelServiceServer) {
 	s.RegisterService(&_HotelService_serviceDesc, srv)
 }
 
-func _HotelService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _HotelService_CreateHotel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Hotel)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HotelServiceServer).Create(ctx, in)
+		return srv.(HotelServiceServer).CreateHotel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.HotelService/Create",
+		FullMethod: "/hotel.HotelService/CreateHotel",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HotelServiceServer).Create(ctx, req.(*Hotel))
+		return srv.(HotelServiceServer).CreateHotel(ctx, req.(*Hotel))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -163,8 +635,8 @@ var _HotelService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*HotelServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Create",
-			Handler:    _HotelService_Create_Handler,
+			MethodName: "CreateHotel",
+			Handler:    _HotelService_CreateHotel_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -195,6 +667,306 @@ func (m *Hotel) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
+	if len(m.UpdatedAt) > 0 {
+		i -= len(m.UpdatedAt)
+		copy(dAtA[i:], m.UpdatedAt)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.UpdatedAt)))
+		i--
+		dAtA[i] = 0x62
+	}
+	if len(m.CreatedAt) > 0 {
+		i -= len(m.CreatedAt)
+		copy(dAtA[i:], m.CreatedAt)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.CreatedAt)))
+		i--
+		dAtA[i] = 0x5a
+	}
+	if len(m.Address) > 0 {
+		i -= len(m.Address)
+		copy(dAtA[i:], m.Address)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Address)))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.Province) > 0 {
+		i -= len(m.Province)
+		copy(dAtA[i:], m.Province)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Province)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.City) > 0 {
+		i -= len(m.City)
+		copy(dAtA[i:], m.City)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.City)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.Country) > 0 {
+		i -= len(m.Country)
+		copy(dAtA[i:], m.Country)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Country)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.ImageUrl) > 0 {
+		i -= len(m.ImageUrl)
+		copy(dAtA[i:], m.ImageUrl)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.ImageUrl)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.License) > 0 {
+		i -= len(m.License)
+		copy(dAtA[i:], m.License)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.License)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Email) > 0 {
+		i -= len(m.Email)
+		copy(dAtA[i:], m.Email)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Email)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Phone) > 0 {
+		i -= len(m.Phone)
+		copy(dAtA[i:], m.Phone)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Phone)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Id)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetAllOwnerRes) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetAllOwnerRes) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetAllOwnerRes) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Owners) > 0 {
+		for iNdEx := len(m.Owners) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Owners[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintHotel(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetAllOwnerReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetAllOwnerReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetAllOwnerReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.Limit != 0 {
+		i = encodeVarintHotel(dAtA, i, uint64(m.Limit))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.Page != 0 {
+		i = encodeVarintHotel(dAtA, i, uint64(m.Page))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetOwnerByColumnItemReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetOwnerByColumnItemReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetOwnerByColumnItemReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Item) > 0 {
+		i -= len(m.Item)
+		copy(dAtA[i:], m.Item)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Item)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Column) > 0 {
+		i -= len(m.Column)
+		copy(dAtA[i:], m.Column)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Column)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Owner) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Owner) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Owner) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.UpdatedAt) > 0 {
+		i -= len(m.UpdatedAt)
+		copy(dAtA[i:], m.UpdatedAt)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.UpdatedAt)))
+		i--
+		dAtA[i] = 0x5a
+	}
+	if len(m.CreatedAt) > 0 {
+		i -= len(m.CreatedAt)
+		copy(dAtA[i:], m.CreatedAt)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.CreatedAt)))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.RefreshToken) > 0 {
+		i -= len(m.RefreshToken)
+		copy(dAtA[i:], m.RefreshToken)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.RefreshToken)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.Role) > 0 {
+		i -= len(m.Role)
+		copy(dAtA[i:], m.Role)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Role)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.ImageUrl) > 0 {
+		i -= len(m.ImageUrl)
+		copy(dAtA[i:], m.ImageUrl)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.ImageUrl)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Phone) > 0 {
+		i -= len(m.Phone)
+		copy(dAtA[i:], m.Phone)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Phone)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Birthday) > 0 {
+		i -= len(m.Birthday)
+		copy(dAtA[i:], m.Birthday)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Birthday)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Password) > 0 {
+		i -= len(m.Password)
+		copy(dAtA[i:], m.Password)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Password)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Email) > 0 {
+		i -= len(m.Email)
+		copy(dAtA[i:], m.Email)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Email)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.FullName) > 0 {
+		i -= len(m.FullName)
+		copy(dAtA[i:], m.FullName)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.FullName)))
+		i--
+		dAtA[i] = 0x12
+	}
 	if len(m.Id) > 0 {
 		i -= len(m.Id)
 		copy(dAtA[i:], m.Id)
@@ -223,6 +995,162 @@ func (m *Hotel) Size() (n int) {
 	var l int
 	_ = l
 	l = len(m.Id)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Phone)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Email)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.License)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.ImageUrl)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Country)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.City)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Province)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Address)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.CreatedAt)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.UpdatedAt)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetAllOwnerRes) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Owners) > 0 {
+		for _, e := range m.Owners {
+			l = e.Size()
+			n += 1 + l + sovHotel(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetAllOwnerReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Page != 0 {
+		n += 1 + sovHotel(uint64(m.Page))
+	}
+	if m.Limit != 0 {
+		n += 1 + sovHotel(uint64(m.Limit))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetOwnerByColumnItemReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Column)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Item)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Owner) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Id)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.FullName)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Email)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Password)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Birthday)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Phone)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.ImageUrl)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Role)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.RefreshToken)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.CreatedAt)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.UpdatedAt)
 	if l > 0 {
 		n += 1 + l + sovHotel(uint64(l))
 	}
@@ -298,6 +1226,1050 @@ func (m *Hotel) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Id = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Phone", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Phone = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Email = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field License", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.License = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ImageUrl", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ImageUrl = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Country", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Country = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field City", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.City = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Province", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Province = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Address = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 11:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CreatedAt = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 12:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UpdatedAt", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.UpdatedAt = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipHotel(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetAllOwnerRes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowHotel
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAllOwnerRes: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAllOwnerRes: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Owners", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Owners = append(m.Owners, &Owner{})
+			if err := m.Owners[len(m.Owners)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipHotel(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetAllOwnerReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowHotel
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAllOwnerReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAllOwnerReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Page", wireType)
+			}
+			m.Page = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Page |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Limit", wireType)
+			}
+			m.Limit = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Limit |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipHotel(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetOwnerByColumnItemReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowHotel
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetOwnerByColumnItemReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetOwnerByColumnItemReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Column", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Column = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Item", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Item = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipHotel(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Owner) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowHotel
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Owner: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Owner: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Id = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FullName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FullName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Email = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Password", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Password = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Birthday", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Birthday = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Phone", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Phone = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ImageUrl", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ImageUrl = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Role", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Role = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RefreshToken", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RefreshToken = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CreatedAt = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 11:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UpdatedAt", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.UpdatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

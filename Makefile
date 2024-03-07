@@ -8,4 +8,4 @@ proto-gen:
 	ls genproto/*/*.pb.go | xargs -n1 -IX bash -c "sed -e '/bool/ s/,omitempty//' X > X.tmp && mv X{.tmp,}"
 
 migrate_file:
-	migrate create -ext sql -dir migrations/ -seq users
+	migrate create -ext sql -dir migrations/ -seq add_role_in_owner

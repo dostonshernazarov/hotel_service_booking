@@ -22,6 +22,6 @@ func NewUserService(db *sqlx.DB, log l.Logger) *HotelService {
 	}
 }
 
-func (s *HotelService) Create(ctx context.Context, req *pb.Hotel) (*pb.Hotel, error) {
+func (s *HotelService) CreateHotel(ctx context.Context, req *pb.Hotel) (*pb.Hotel, error) {
 	return nil, nil
 }
