@@ -106,7 +106,7 @@ func (r *hotelRepo) GetUserByID(id string) (*pb.Owner, error) {
 	return &user, nil
 }
 
-func (r *hotelRepo) GetOwnerByColumnItem(req *pb.GetOwnerByColumnItemReq) (*pb.Owner, error) {
+func (r *hotelRepo) GetOwnerByColumnItem(req *pb.GetByColumnItemReq) (*pb.Owner, error) {
 	var user pb.Owner
 	var full_name, email, password, birthday, imageUrl, phone, role, refreshToken sql.NullString
 
@@ -134,7 +134,7 @@ func (r *hotelRepo) GetOwnerByColumnItem(req *pb.GetOwnerByColumnItemReq) (*pb.O
 	return &user, nil
 }
 
-func (r *hotelRepo) GetAllOwners(req *pb.GetAllOwnerReq) ([]*pb.Owner, error) {
+func (r *hotelRepo) GetAllOwners(req *pb.GetAllReq) ([]*pb.Owner, error) {
 	var users []*pb.Owner
 
 	query := `
@@ -255,34 +255,24 @@ func (r *hotelRepo) CreateHotel(hotel *pb.Hotel) (*pb.Hotel, error) {
 	var country, city, province, address, name, phone, email, license, image_url sql.NullString
 	var hotelRes pb.Hotel
 
-	//Query to add items in location
-	queryLoc := `INSERT INTO location (id, country,
+	queryHotel := `INSERT INTO hotel_info (id, name, phone, email,
+					license, image_url, country,
                      city,
                      province,
-                     addres) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) returning city,
-                     province, addres, created_at, updated_at`
-	idLoc := uuid.New().String()
-	err := r.db.QueryRow(queryLoc, idLoc, sql.NullString{String: hotel.Country, Valid: hotel.Country != ""},
-		sql.NullString{String: hotel.City, Valid: hotel.City != ""},
-		sql.NullString{String: hotel.Province, Valid: hotel.Province != ""},
-		sql.NullString{String: hotel.Address, Valid: hotel.Address != ""}).Scan(&country, &city,
-		&province, &address)
-	if err != nil {
-		logger.Error(err)
-		return nil, err
-	}
-
-	queryHotel := `INSERT INTO hotel_info (id, name, phone, email,
-					license, image_url, location_id) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING name,
-					phone, email, license, image_url, created_at, updated_at`
+                     address,
+                     owner_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id, name,
+					phone, email, license, image_url, country, city, province, address, owner_id, created_at, updated_at`
 	idHotel := uuid.New().String()
-	err = r.db.QueryRow(queryHotel, idHotel, sql.NullString{String: hotel.Name, Valid: hotel.Name != ""},
+	err := r.db.QueryRow(queryHotel, idHotel, sql.NullString{String: hotel.Name, Valid: hotel.Name != ""},
 		sql.NullString{String: hotel.Phone, Valid: hotel.Phone != ""},
 		sql.NullString{String: hotel.Email, Valid: hotel.Email != ""},
 		sql.NullString{String: hotel.License, Valid: hotel.License != ""},
 		sql.NullString{String: hotel.ImageUrl, Valid: hotel.ImageUrl != ""},
-		idLoc).Scan(&name, &phone, &email, &license,
-		&image_url, &hotelRes.CreatedAt, &hotelRes.UpdatedAt)
+		sql.NullString{String: hotel.Country, Valid: hotel.Country != ""},
+		sql.NullString{String: hotel.City, Valid: hotel.City != ""},
+		sql.NullString{String: hotel.Province, Valid: hotel.Province != ""},
+		sql.NullString{String: hotel.Address, Valid: hotel.Address != ""}, hotel.OwnerId).Scan(&name, &phone, &email, &license,
+		&image_url, &country, &city, &province, &address, &hotelRes.OwnerId, &hotelRes.CreatedAt, &hotelRes.UpdatedAt)
 
 	if err != nil {
 		logger.Error(err)
@@ -304,7 +294,183 @@ func (r *hotelRepo) CreateHotel(hotel *pb.Hotel) (*pb.Hotel, error) {
 }
 
 func (r *hotelRepo) GetHotelByID(hotelId string) (*pb.Hotel, error) {
+	var country, city, province, address, name, phone, email, license, image_url, created_at, updated_at sql.NullString
+	var hotelRes pb.Hotel
 
+	queryH := `SELECT id, name, phone, email, license, 
+					image_url,country,
+                    city,
+                    province,
+                    address, owner_id, created_at, 
+					updated_at FROM hotel_info WHERE id=$1 AND deleted_at IS NULL`
+
+	err := r.db.QueryRow(queryH, hotelId).Scan(&hotelRes.Id, &name, &phone,
+		&email, &license, &image_url, &country, &city, &province, &address, &hotelRes.OwnerId, &created_at, &updated_at)
+	if err != nil {
+		logger.Error(err)
+		return nil, err
+	}
+
+	hotelRes.Name = stringValue(name)
+	hotelRes.Phone = stringValue(phone)
+	hotelRes.Email = stringValue(email)
+	hotelRes.License = stringValue(license)
+	hotelRes.ImageUrl = stringValue(image_url)
+	hotelRes.Country = stringValue(country)
+	hotelRes.City = stringValue(city)
+	hotelRes.Province = stringValue(province)
+	hotelRes.Address = stringValue(address)
+
+	return &hotelRes, nil
+}
+
+func (r *hotelRepo) GetAllHotels(req *pb.GetAllReq) ([]*pb.Hotel, error) {
+	var hotels []*pb.Hotel
+
+	query := `SELECT id, name, phone, email, license, 
+					image_url,country,
+                    city,
+                    province,
+                    addres,owner_id, created_at, 
+					updated_at FROM hotel_info WHERE deleted_at IS NULL`
+
+	offset := req.Limit * (req.Page - 1)
+	rows, err := r.db.Query(query, req.Limit, offset)
+	if err != nil {
+		logger.Error(err)
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var hotel pb.Hotel
+		var country, city, province, address, name, phone, email, license, image_url, created_at, updated_at sql.NullString
+
+		err := rows.Scan(&hotel.Id, &name, &phone, &email, &license,
+			&image_url, &city, &province, &address, &hotel.OwnerId, &created_at, &updated_at)
+		if err != nil {
+			logger.Error(err)
+			return nil, err
+		}
+		hotel.Name = stringValue(name)
+		hotel.Phone = stringValue(phone)
+		hotel.Email = stringValue(email)
+		hotel.License = stringValue(license)
+		hotel.ImageUrl = stringValue(image_url)
+		hotel.Country = stringValue(country)
+		hotel.City = stringValue(city)
+		hotel.Province = stringValue(province)
+		hotel.Address = stringValue(address)
+
+		hotels = append(hotels, &hotel)
+
+	}
+	return hotels, nil
+}
+
+func (r *hotelRepo) UpdateHotelByID(hotel *pb.Hotel) (*pb.Hotel, error) {
+	var country, city, province, address, name, phone, email, license, image_url sql.NullString
+	var hotelRes pb.Hotel
+	currentTime := time.Now()
+
+	query := `UPDATE hotel_info SET name = $1, phone = $2, email = $3, license = $4, 
+					image_url = $5,country = $6,
+                    city = $7,
+                    province = $8,
+                    address = $9, updated_at = $10 WHERE id = $11 RETURNING id,
+                                        name, phone,
+                                        email, license, image_url,
+                                        country, city, province, address, created_at, updated_at`
+
+	err := r.db.QueryRow(query, sql.NullString{String: hotel.Name, Valid: hotel.Name != ""},
+		sql.NullString{String: hotel.Phone, Valid: hotel.Phone != ""},
+		sql.NullString{String: hotel.Email, Valid: hotel.Email != ""},
+		sql.NullString{String: hotel.License, Valid: hotel.License != ""},
+		sql.NullString{String: hotel.ImageUrl, Valid: hotel.ImageUrl != ""},
+		sql.NullString{String: hotel.Country, Valid: hotel.Country != ""},
+		sql.NullString{String: hotel.City, Valid: hotel.City != ""},
+		sql.NullString{String: hotel.Province, Valid: hotel.Province != ""},
+		sql.NullString{String: hotel.Address, Valid: hotel.Address != ""}, currentTime).Scan(&name,
+		&phone, &email, &license,
+		&image_url, &country, &city,
+		&province, &address,
+		&hotelRes.OwnerId, &hotelRes.CreatedAt,
+		&hotelRes.UpdatedAt)
+
+	if err != nil {
+		logger.Error(err)
+		return nil, err
+	}
+
+	hotelRes.Name = stringValue(name)
+	hotelRes.Phone = stringValue(phone)
+	hotelRes.Email = stringValue(email)
+	hotelRes.License = stringValue(license)
+	hotelRes.ImageUrl = stringValue(image_url)
+	hotelRes.Country = stringValue(country)
+	hotelRes.City = stringValue(city)
+	hotelRes.Province = stringValue(province)
+	hotelRes.Address = stringValue(address)
+
+	return &hotelRes, nil
+}
+
+func (r *hotelRepo) SoftDeleteHotelByID(hotelId string) error {
+	query := "UPDATE hotel_info SET deleted_at = $1 WHERE id = $2"
+	currentTime := time.Now()
+
+	result, err := r.db.Exec(query, currentTime, hotelId)
+	if err != nil {
+		logger.Error(err)
+		return err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		logger.Error(err)
+		return err
+	}
+
+	if rowsAffected == 0 {
+		return errors.New("no hotel found with the provided ID")
+	}
+
+	return nil
+}
+
+func (r *hotelRepo) GetHotelByColumnItem(req *pb.GetByColumnItemReq) (*pb.Hotel, error) {
+	var country, city, province, address, name, phone, email, license, image_url, created_at, updated_at sql.NullString
+	var hotelRes pb.Hotel
+
+	col := "id, name,phone,email,license,image_url,country,city,province,address, owner_id, created_at,updated_at"
+	query := fmt.Sprintf("SELECT %s FROM hotel_info WHERE %s = $1 AND deleted_at IS NULL", col, req.Column)
+
+	if err := r.db.QueryRow(
+		query,
+		req.Item,
+	).Scan(&hotelRes.Id, &name, &phone,
+		&email, &license, &image_url,
+		&country, &city, &province, &address, &hotelRes.OwnerId, &created_at, &updated_at); err != nil {
+		return nil, err
+	}
+
+	hotelRes.Name = stringValue(name)
+	hotelRes.Phone = stringValue(phone)
+	hotelRes.Email = stringValue(email)
+	hotelRes.License = stringValue(license)
+	hotelRes.ImageUrl = stringValue(image_url)
+	hotelRes.Country = stringValue(country)
+	hotelRes.City = stringValue(city)
+	hotelRes.Province = stringValue(province)
+	hotelRes.Address = stringValue(address)
+
+	return &hotelRes, nil
+}
+
+// Room CRUD
+func (r *hotelRepo) CreateRoom(room *pb.Room) (*pb.Room, error) {
+
+	return nil, nil
 }
 
 // stringValue returns the string value of a sql.NullString, handling null values.

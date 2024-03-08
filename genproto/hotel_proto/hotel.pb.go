@@ -26,6 +26,109 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type Room struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	HotelId              string   `protobuf:"bytes,2,opt,name=hotel_id,json=hotelId,proto3" json:"hotel_id"`
+	Price                string   `protobuf:"bytes,3,opt,name=price,proto3" json:"price"`
+	Description          string   `protobuf:"bytes,4,opt,name=description,proto3" json:"description"`
+	Holidays             string   `protobuf:"bytes,5,opt,name=holidays,proto3" json:"holidays"`
+	FreeDays             string   `protobuf:"bytes,6,opt,name=free_days,json=freeDays,proto3" json:"free_days"`
+	NumberOfRooms        string   `protobuf:"bytes,7,opt,name=number_of_rooms,json=numberOfRooms,proto3" json:"number_of_rooms"`
+	Discount             string   `protobuf:"bytes,8,opt,name=discount,proto3" json:"discount"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Room) Reset()         { *m = Room{} }
+func (m *Room) String() string { return proto.CompactTextString(m) }
+func (*Room) ProtoMessage()    {}
+func (*Room) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6141e598f4927cc0, []int{0}
+}
+func (m *Room) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Room) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Room.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Room) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Room.Merge(m, src)
+}
+func (m *Room) XXX_Size() int {
+	return m.Size()
+}
+func (m *Room) XXX_DiscardUnknown() {
+	xxx_messageInfo_Room.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Room proto.InternalMessageInfo
+
+func (m *Room) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Room) GetHotelId() string {
+	if m != nil {
+		return m.HotelId
+	}
+	return ""
+}
+
+func (m *Room) GetPrice() string {
+	if m != nil {
+		return m.Price
+	}
+	return ""
+}
+
+func (m *Room) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *Room) GetHolidays() string {
+	if m != nil {
+		return m.Holidays
+	}
+	return ""
+}
+
+func (m *Room) GetFreeDays() string {
+	if m != nil {
+		return m.FreeDays
+	}
+	return ""
+}
+
+func (m *Room) GetNumberOfRooms() string {
+	if m != nil {
+		return m.NumberOfRooms
+	}
+	return ""
+}
+
+func (m *Room) GetDiscount() string {
+	if m != nil {
+		return m.Discount
+	}
+	return ""
+}
+
 type Hotel struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
@@ -37,8 +140,9 @@ type Hotel struct {
 	City                 string   `protobuf:"bytes,8,opt,name=city,proto3" json:"city"`
 	Province             string   `protobuf:"bytes,9,opt,name=province,proto3" json:"province"`
 	Address              string   `protobuf:"bytes,10,opt,name=address,proto3" json:"address"`
-	CreatedAt            string   `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
-	UpdatedAt            string   `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	OwnerId              string   `protobuf:"bytes,11,opt,name=owner_id,json=ownerId,proto3" json:"owner_id"`
+	CreatedAt            string   `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt            string   `protobuf:"bytes,13,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -48,7 +152,7 @@ func (m *Hotel) Reset()         { *m = Hotel{} }
 func (m *Hotel) String() string { return proto.CompactTextString(m) }
 func (*Hotel) ProtoMessage()    {}
 func (*Hotel) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6141e598f4927cc0, []int{0}
+	return fileDescriptor_6141e598f4927cc0, []int{1}
 }
 func (m *Hotel) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -147,6 +251,13 @@ func (m *Hotel) GetAddress() string {
 	return ""
 }
 
+func (m *Hotel) GetOwnerId() string {
+	if m != nil {
+		return m.OwnerId
+	}
+	return ""
+}
+
 func (m *Hotel) GetCreatedAt() string {
 	if m != nil {
 		return m.CreatedAt
@@ -161,25 +272,25 @@ func (m *Hotel) GetUpdatedAt() string {
 	return ""
 }
 
-type GetAllOwnerRes struct {
+type GetAllRes struct {
 	Owners               []*Owner `protobuf:"bytes,1,rep,name=owners,proto3" json:"owners"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetAllOwnerRes) Reset()         { *m = GetAllOwnerRes{} }
-func (m *GetAllOwnerRes) String() string { return proto.CompactTextString(m) }
-func (*GetAllOwnerRes) ProtoMessage()    {}
-func (*GetAllOwnerRes) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6141e598f4927cc0, []int{1}
+func (m *GetAllRes) Reset()         { *m = GetAllRes{} }
+func (m *GetAllRes) String() string { return proto.CompactTextString(m) }
+func (*GetAllRes) ProtoMessage()    {}
+func (*GetAllRes) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6141e598f4927cc0, []int{2}
 }
-func (m *GetAllOwnerRes) XXX_Unmarshal(b []byte) error {
+func (m *GetAllRes) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetAllOwnerRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetAllRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetAllOwnerRes.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetAllRes.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -189,26 +300,26 @@ func (m *GetAllOwnerRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
-func (m *GetAllOwnerRes) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetAllOwnerRes.Merge(m, src)
+func (m *GetAllRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAllRes.Merge(m, src)
 }
-func (m *GetAllOwnerRes) XXX_Size() int {
+func (m *GetAllRes) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetAllOwnerRes) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetAllOwnerRes.DiscardUnknown(m)
+func (m *GetAllRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAllRes.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetAllOwnerRes proto.InternalMessageInfo
+var xxx_messageInfo_GetAllRes proto.InternalMessageInfo
 
-func (m *GetAllOwnerRes) GetOwners() []*Owner {
+func (m *GetAllRes) GetOwners() []*Owner {
 	if m != nil {
 		return m.Owners
 	}
 	return nil
 }
 
-type GetAllOwnerReq struct {
+type GetAllReq struct {
 	Page                 int64    `protobuf:"varint,1,opt,name=page,proto3" json:"page"`
 	Limit                int64    `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -216,18 +327,18 @@ type GetAllOwnerReq struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetAllOwnerReq) Reset()         { *m = GetAllOwnerReq{} }
-func (m *GetAllOwnerReq) String() string { return proto.CompactTextString(m) }
-func (*GetAllOwnerReq) ProtoMessage()    {}
-func (*GetAllOwnerReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6141e598f4927cc0, []int{2}
+func (m *GetAllReq) Reset()         { *m = GetAllReq{} }
+func (m *GetAllReq) String() string { return proto.CompactTextString(m) }
+func (*GetAllReq) ProtoMessage()    {}
+func (*GetAllReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6141e598f4927cc0, []int{3}
 }
-func (m *GetAllOwnerReq) XXX_Unmarshal(b []byte) error {
+func (m *GetAllReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetAllOwnerReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetAllReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetAllOwnerReq.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetAllReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -237,33 +348,33 @@ func (m *GetAllOwnerReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
-func (m *GetAllOwnerReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetAllOwnerReq.Merge(m, src)
+func (m *GetAllReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAllReq.Merge(m, src)
 }
-func (m *GetAllOwnerReq) XXX_Size() int {
+func (m *GetAllReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetAllOwnerReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetAllOwnerReq.DiscardUnknown(m)
+func (m *GetAllReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAllReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetAllOwnerReq proto.InternalMessageInfo
+var xxx_messageInfo_GetAllReq proto.InternalMessageInfo
 
-func (m *GetAllOwnerReq) GetPage() int64 {
+func (m *GetAllReq) GetPage() int64 {
 	if m != nil {
 		return m.Page
 	}
 	return 0
 }
 
-func (m *GetAllOwnerReq) GetLimit() int64 {
+func (m *GetAllReq) GetLimit() int64 {
 	if m != nil {
 		return m.Limit
 	}
 	return 0
 }
 
-type GetOwnerByColumnItemReq struct {
+type GetByColumnItemReq struct {
 	Column               string   `protobuf:"bytes,1,opt,name=column,proto3" json:"column"`
 	Item                 string   `protobuf:"bytes,2,opt,name=item,proto3" json:"item"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -271,18 +382,18 @@ type GetOwnerByColumnItemReq struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetOwnerByColumnItemReq) Reset()         { *m = GetOwnerByColumnItemReq{} }
-func (m *GetOwnerByColumnItemReq) String() string { return proto.CompactTextString(m) }
-func (*GetOwnerByColumnItemReq) ProtoMessage()    {}
-func (*GetOwnerByColumnItemReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6141e598f4927cc0, []int{3}
+func (m *GetByColumnItemReq) Reset()         { *m = GetByColumnItemReq{} }
+func (m *GetByColumnItemReq) String() string { return proto.CompactTextString(m) }
+func (*GetByColumnItemReq) ProtoMessage()    {}
+func (*GetByColumnItemReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6141e598f4927cc0, []int{4}
 }
-func (m *GetOwnerByColumnItemReq) XXX_Unmarshal(b []byte) error {
+func (m *GetByColumnItemReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetOwnerByColumnItemReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetByColumnItemReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetOwnerByColumnItemReq.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetByColumnItemReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -292,26 +403,26 @@ func (m *GetOwnerByColumnItemReq) XXX_Marshal(b []byte, deterministic bool) ([]b
 		return b[:n], nil
 	}
 }
-func (m *GetOwnerByColumnItemReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetOwnerByColumnItemReq.Merge(m, src)
+func (m *GetByColumnItemReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetByColumnItemReq.Merge(m, src)
 }
-func (m *GetOwnerByColumnItemReq) XXX_Size() int {
+func (m *GetByColumnItemReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetOwnerByColumnItemReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetOwnerByColumnItemReq.DiscardUnknown(m)
+func (m *GetByColumnItemReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetByColumnItemReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetOwnerByColumnItemReq proto.InternalMessageInfo
+var xxx_messageInfo_GetByColumnItemReq proto.InternalMessageInfo
 
-func (m *GetOwnerByColumnItemReq) GetColumn() string {
+func (m *GetByColumnItemReq) GetColumn() string {
 	if m != nil {
 		return m.Column
 	}
 	return ""
 }
 
-func (m *GetOwnerByColumnItemReq) GetItem() string {
+func (m *GetByColumnItemReq) GetItem() string {
 	if m != nil {
 		return m.Item
 	}
@@ -339,7 +450,7 @@ func (m *Owner) Reset()         { *m = Owner{} }
 func (m *Owner) String() string { return proto.CompactTextString(m) }
 func (*Owner) ProtoMessage()    {}
 func (*Owner) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6141e598f4927cc0, []int{4}
+	return fileDescriptor_6141e598f4927cc0, []int{5}
 }
 func (m *Owner) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -446,49 +557,59 @@ func (m *Owner) GetUpdatedAt() string {
 }
 
 func init() {
+	proto.RegisterType((*Room)(nil), "hotel.Room")
 	proto.RegisterType((*Hotel)(nil), "hotel.Hotel")
-	proto.RegisterType((*GetAllOwnerRes)(nil), "hotel.GetAllOwnerRes")
-	proto.RegisterType((*GetAllOwnerReq)(nil), "hotel.GetAllOwnerReq")
-	proto.RegisterType((*GetOwnerByColumnItemReq)(nil), "hotel.GetOwnerByColumnItemReq")
+	proto.RegisterType((*GetAllRes)(nil), "hotel.GetAllRes")
+	proto.RegisterType((*GetAllReq)(nil), "hotel.GetAllReq")
+	proto.RegisterType((*GetByColumnItemReq)(nil), "hotel.GetByColumnItemReq")
 	proto.RegisterType((*Owner)(nil), "hotel.Owner")
 }
 
 func init() { proto.RegisterFile("hotel_proto/hotel.proto", fileDescriptor_6141e598f4927cc0) }
 
 var fileDescriptor_6141e598f4927cc0 = []byte{
-	// 501 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x93, 0xc1, 0x6e, 0xd3, 0x40,
-	0x10, 0x86, 0x71, 0x12, 0x3b, 0xf1, 0x24, 0x54, 0x68, 0x85, 0xe8, 0x2a, 0x15, 0x51, 0x65, 0x38,
-	0x94, 0x4b, 0x91, 0x8a, 0x84, 0x04, 0xb7, 0xb4, 0x42, 0x85, 0x0b, 0x48, 0x01, 0xce, 0x96, 0x6b,
-	0x4f, 0x9b, 0x15, 0x6b, 0xaf, 0x59, 0xaf, 0x5b, 0xe5, 0x4d, 0x78, 0x08, 0x0e, 0x3c, 0x06, 0x47,
-	0x1e, 0x01, 0x85, 0x17, 0x41, 0x3b, 0xbb, 0x2e, 0x49, 0x2a, 0x71, 0xfb, 0xff, 0x7f, 0x3c, 0xa3,
-	0xf5, 0x7c, 0xbb, 0xb0, 0xbf, 0x54, 0x06, 0x65, 0x5a, 0x6b, 0x65, 0xd4, 0x73, 0xd2, 0xc7, 0xa4,
-	0x59, 0x48, 0x26, 0xf9, 0xd1, 0x83, 0xf0, 0xad, 0x55, 0x6c, 0x0f, 0x7a, 0xa2, 0xe0, 0xc1, 0x61,
-	0x70, 0x14, 0x2f, 0x7a, 0xa2, 0x60, 0x0c, 0x06, 0x55, 0x56, 0x22, 0xef, 0x51, 0x42, 0x9a, 0x3d,
-	0x84, 0xb0, 0x5e, 0xaa, 0x0a, 0x79, 0x9f, 0x42, 0x67, 0x6c, 0x8a, 0x65, 0x26, 0x24, 0x1f, 0xb8,
-	0x94, 0x0c, 0xe3, 0x30, 0x94, 0x22, 0xc7, 0xaa, 0x41, 0x1e, 0x52, 0xde, 0x59, 0x76, 0x00, 0xb1,
-	0x28, 0xb3, 0x2b, 0x4c, 0x5b, 0x2d, 0x79, 0x44, 0xb5, 0x11, 0x05, 0x9f, 0x35, 0xb5, 0xe5, 0xaa,
-	0xad, 0x8c, 0x5e, 0xf1, 0xa1, 0x6b, 0xf3, 0xd6, 0x1e, 0x28, 0x17, 0x66, 0xc5, 0x47, 0xee, 0x40,
-	0x56, 0xb3, 0x29, 0x8c, 0x6a, 0xad, 0xae, 0x45, 0x95, 0x23, 0x8f, 0xdd, 0xa4, 0xce, 0xdb, 0x49,
-	0x59, 0x51, 0x68, 0x6c, 0x1a, 0x0e, 0x6e, 0x92, 0xb7, 0xec, 0x31, 0x40, 0xae, 0x31, 0x33, 0x58,
-	0xa4, 0x99, 0xe1, 0x63, 0x2a, 0xc6, 0x3e, 0x99, 0x1b, 0x5b, 0x6e, 0xeb, 0xa2, 0x2b, 0x4f, 0x5c,
-	0xd9, 0x27, 0x73, 0x93, 0xbc, 0x84, 0xbd, 0x73, 0x34, 0x73, 0x29, 0x3f, 0xdc, 0x54, 0xa8, 0x17,
-	0xd8, 0xb0, 0xa7, 0x10, 0x29, 0xab, 0x1b, 0x1e, 0x1c, 0xf6, 0x8f, 0xc6, 0x27, 0x93, 0x63, 0xb7,
-	0x69, 0xf7, 0x81, 0xaf, 0x25, 0xaf, 0x77, 0xfa, 0xbe, 0xda, 0x3f, 0xaa, 0xb3, 0x2b, 0xa4, 0xa5,
-	0xf7, 0x17, 0xa4, 0xed, 0x32, 0xa5, 0x28, 0x85, 0xa1, 0xbd, 0xf7, 0x17, 0xce, 0x24, 0x6f, 0x60,
-	0xff, 0x1c, 0x0d, 0x35, 0x9e, 0xae, 0xce, 0x94, 0x6c, 0xcb, 0xea, 0x9d, 0xc1, 0xd2, 0x0e, 0x79,
-	0x04, 0x51, 0x4e, 0x81, 0x67, 0xe7, 0x9d, 0x1d, 0x2e, 0x0c, 0x96, 0x1d, 0x3f, 0xab, 0x93, 0xef,
-	0x3d, 0x08, 0x69, 0xc8, 0x1d, 0xda, 0x07, 0x10, 0x5f, 0xb6, 0x52, 0xa6, 0x1b, 0xc8, 0x47, 0x36,
-	0x78, 0xef, 0xb1, 0x3b, 0xc0, 0xfd, 0x4d, 0xc0, 0x76, 0xf7, 0x59, 0xd3, 0xdc, 0x28, 0x5d, 0x78,
-	0xf2, 0xb7, 0xde, 0xd6, 0x2e, 0x84, 0x36, 0xcb, 0x22, 0x5b, 0x79, 0xfa, 0xb7, 0xfe, 0xdf, 0x25,
-	0x8a, 0x36, 0x2f, 0xd1, 0xd6, 0xa5, 0x18, 0xee, 0x5c, 0x0a, 0x06, 0x03, 0xad, 0x24, 0x76, 0xe8,
-	0xad, 0x66, 0x4f, 0xe0, 0xbe, 0xc6, 0x4b, 0x8d, 0xcd, 0x32, 0x35, 0xea, 0x0b, 0x56, 0x9e, 0xff,
-	0xc4, 0x87, 0x9f, 0x6c, 0xb6, 0x43, 0x1a, 0xfe, 0x4f, 0x7a, 0xbc, 0x43, 0xfa, 0xe4, 0x15, 0x4c,
-	0x68, 0x5b, 0x1f, 0x51, 0x5f, 0x8b, 0x1c, 0xd9, 0x33, 0x18, 0x9f, 0x51, 0xaf, 0xdb, 0xe1, 0x16,
-	0xe6, 0xe9, 0x96, 0xb3, 0xad, 0xf4, 0xac, 0xee, 0xb4, 0xba, 0xc7, 0xd6, 0x7d, 0x4c, 0x6e, 0xba,
-	0xe5, 0x4e, 0x1f, 0xfc, 0x5c, 0xcf, 0x82, 0x5f, 0xeb, 0x59, 0xf0, 0x7b, 0x3d, 0x0b, 0xbe, 0xfd,
-	0x99, 0xdd, 0xbb, 0x88, 0xe8, 0xc9, 0xbe, 0xf8, 0x1b, 0x00, 0x00, 0xff, 0xff, 0x4f, 0x31, 0xa3,
-	0xda, 0xcd, 0x03, 0x00, 0x00,
+	// 649 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x54, 0xcb, 0x6e, 0xd3, 0x40,
+	0x14, 0xc5, 0x79, 0x36, 0xd7, 0x29, 0x54, 0xa3, 0x0a, 0xdc, 0x20, 0xa2, 0x2a, 0xa0, 0xaa, 0x6c,
+	0x8a, 0x5a, 0xc4, 0x1a, 0xda, 0x22, 0x95, 0x6e, 0xa8, 0x14, 0x60, 0x6d, 0xb9, 0xf6, 0x4d, 0x33,
+	0xc2, 0xf6, 0x84, 0x99, 0x49, 0xab, 0xfc, 0x09, 0x1f, 0x01, 0xff, 0x81, 0xc4, 0x86, 0x4f, 0x40,
+	0x45, 0xe2, 0x3b, 0xd0, 0xbd, 0x33, 0x6e, 0x5e, 0x12, 0xbb, 0x7b, 0xce, 0xf1, 0xdc, 0xcc, 0xf1,
+	0x39, 0x0e, 0x3c, 0x1a, 0x2b, 0x8b, 0x79, 0x3c, 0xd1, 0xca, 0xaa, 0x17, 0x3c, 0x1f, 0xf0, 0x2c,
+	0x9a, 0x0c, 0x06, 0x7f, 0x03, 0x68, 0x0c, 0x95, 0x2a, 0xc4, 0x7d, 0xa8, 0xc9, 0x2c, 0x0a, 0x76,
+	0x83, 0xfd, 0xce, 0xb0, 0x26, 0x33, 0xb1, 0x03, 0x1b, 0xee, 0xa8, 0xcc, 0xa2, 0x1a, 0xb3, 0x6d,
+	0xc6, 0xe7, 0x99, 0xd8, 0x86, 0xe6, 0x44, 0xcb, 0x14, 0xa3, 0x3a, 0xf3, 0x0e, 0x88, 0x5d, 0x08,
+	0x33, 0x34, 0xa9, 0x96, 0x13, 0x2b, 0x55, 0x19, 0x35, 0x58, 0x5b, 0xa4, 0x44, 0x8f, 0x56, 0xe6,
+	0x32, 0x4b, 0x66, 0x26, 0x6a, 0xb2, 0x7c, 0x87, 0xc5, 0x63, 0xe8, 0x8c, 0x34, 0x62, 0xcc, 0x62,
+	0xcb, 0x89, 0x44, 0xbc, 0x25, 0x71, 0x0f, 0x1e, 0x94, 0xd3, 0xe2, 0x12, 0x75, 0xac, 0x46, 0xb1,
+	0x56, 0xaa, 0x30, 0x51, 0x9b, 0x1f, 0xd9, 0x74, 0xf4, 0xc5, 0x88, 0x2c, 0x18, 0xfa, 0x81, 0x4c,
+	0x9a, 0x54, 0x4d, 0x4b, 0x1b, 0x6d, 0xb8, 0x1d, 0x15, 0x1e, 0xfc, 0xac, 0x41, 0xf3, 0x1d, 0x19,
+	0x58, 0x73, 0x2a, 0xa0, 0x51, 0x26, 0x05, 0x7a, 0x97, 0x3c, 0xb3, 0xc5, 0xb1, 0x2a, 0xe7, 0x16,
+	0x09, 0x10, 0x8b, 0x45, 0x22, 0x73, 0x6f, 0xce, 0x01, 0x11, 0x41, 0x3b, 0x97, 0x29, 0x96, 0x06,
+	0xbd, 0xab, 0x0a, 0x92, 0x29, 0x59, 0x24, 0x57, 0x18, 0x4f, 0x75, 0x5e, 0x99, 0x62, 0xe2, 0x93,
+	0xe6, 0x63, 0x7c, 0x33, 0x3d, 0xf3, 0x66, 0x2a, 0x48, 0x17, 0x4a, 0xa5, 0x9d, 0x79, 0x0b, 0x3c,
+	0x93, 0xb5, 0x89, 0x56, 0xd7, 0xb2, 0x4c, 0x31, 0xea, 0xb8, 0x4d, 0x15, 0xa6, 0x4d, 0x49, 0x96,
+	0x69, 0x34, 0x26, 0x02, 0xb7, 0xc9, 0x43, 0x0a, 0x51, 0xdd, 0x94, 0xa8, 0x29, 0xc4, 0xd0, 0x49,
+	0x8c, 0xcf, 0x33, 0xf1, 0x04, 0x20, 0xd5, 0x98, 0x58, 0xcc, 0xe2, 0xc4, 0x46, 0x5d, 0x16, 0x3b,
+	0x9e, 0x39, 0xb6, 0x24, 0x4f, 0x27, 0x59, 0x25, 0x6f, 0x3a, 0xd9, 0x33, 0xc7, 0x76, 0x70, 0x08,
+	0x9d, 0x33, 0xb4, 0xc7, 0x79, 0x3e, 0x44, 0x23, 0x9e, 0x41, 0x8b, 0xb7, 0x9a, 0x28, 0xd8, 0xad,
+	0xef, 0x87, 0x47, 0xdd, 0x03, 0x57, 0xb4, 0x0b, 0x22, 0x87, 0x5e, 0x1b, 0xbc, 0x9a, 0x1f, 0xf9,
+	0x42, 0x16, 0x27, 0xc9, 0x15, 0x72, 0x0a, 0xf5, 0x21, 0xcf, 0xf4, 0x76, 0x73, 0x59, 0x48, 0xcb,
+	0x41, 0xd4, 0x87, 0x0e, 0x0c, 0xde, 0x80, 0x38, 0x43, 0x7b, 0x32, 0x3b, 0x55, 0xf9, 0xb4, 0x28,
+	0xcf, 0x2d, 0x16, 0x74, 0xfe, 0x21, 0xb4, 0x52, 0x26, 0x7c, 0x8e, 0x1e, 0xd1, 0x5e, 0x69, 0xb1,
+	0xa8, 0xb2, 0xa4, 0x79, 0xf0, 0xad, 0x06, 0x4d, 0xbe, 0xca, 0x5a, 0xf2, 0x54, 0xba, 0x69, 0x9e,
+	0xc7, 0x0b, 0xf1, 0x6f, 0x10, 0xf1, 0xde, 0x57, 0xc0, 0x85, 0x5d, 0x5f, 0x0c, 0x9b, 0x72, 0x48,
+	0x8c, 0xb9, 0x51, 0x3a, 0xf3, 0x2d, 0xb8, 0xc3, 0xa4, 0x5d, 0x4a, 0x6d, 0xc7, 0x59, 0x32, 0xab,
+	0xfa, 0x5d, 0xe1, 0x79, 0xa1, 0x5a, 0x8b, 0x85, 0x5a, 0x2a, 0x48, 0x7b, 0xa5, 0x20, 0x02, 0x1a,
+	0x5a, 0xe5, 0x58, 0xd5, 0x80, 0x66, 0xf1, 0x14, 0x36, 0x35, 0x8e, 0x34, 0x9a, 0x71, 0x6c, 0xd5,
+	0x67, 0x2c, 0x7d, 0x17, 0xba, 0x9e, 0xfc, 0x48, 0xdc, 0x4a, 0xb4, 0xf0, 0xff, 0x68, 0xc3, 0x95,
+	0x68, 0x8f, 0xbe, 0x07, 0xd0, 0xe5, 0xd7, 0xf5, 0x01, 0xf5, 0x35, 0x7d, 0xd8, 0xcf, 0x21, 0x3c,
+	0xe5, 0xc3, 0xee, 0x25, 0x2e, 0xa5, 0xdb, 0x5b, 0x42, 0xe2, 0x35, 0x6c, 0x9f, 0xa1, 0xe5, 0x79,
+	0x31, 0x31, 0xb1, 0xe3, 0x9f, 0x5a, 0x4f, 0x72, 0x65, 0xc1, 0x21, 0x84, 0xae, 0x24, 0x0e, 0x6e,
+	0xcd, 0xcf, 0xb9, 0xe2, 0xf4, 0x56, 0x19, 0x73, 0x94, 0x40, 0x97, 0xbf, 0xeb, 0xb5, 0xeb, 0xba,
+	0xaf, 0xbd, 0xda, 0xcf, 0xa8, 0xb7, 0x84, 0xc4, 0x1e, 0x80, 0x7b, 0x94, 0xff, 0x01, 0x43, 0xaf,
+	0x11, 0xe8, 0x2d, 0x82, 0x93, 0xad, 0x1f, 0xb7, 0xfd, 0xe0, 0xd7, 0x6d, 0x3f, 0xf8, 0x7d, 0xdb,
+	0x0f, 0xbe, 0xfe, 0xe9, 0xdf, 0xbb, 0x6c, 0xf1, 0x9f, 0xe8, 0xcb, 0x7f, 0x01, 0x00, 0x00, 0xff,
+	0xff, 0x09, 0x61, 0x3a, 0x74, 0x5f, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -504,6 +625,8 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type OwnerServiceClient interface {
 	CreateOwner(ctx context.Context, in *Owner, opts ...grpc.CallOption) (*Owner, error)
+	GetOwnerByColumnItem(ctx context.Context, in *GetByColumnItemReq, opts ...grpc.CallOption) (*Owner, error)
+	GetAllOwner(ctx context.Context, in *GetAllReq, opts ...grpc.CallOption) (*GetAllRes, error)
 }
 
 type ownerServiceClient struct {
@@ -523,9 +646,29 @@ func (c *ownerServiceClient) CreateOwner(ctx context.Context, in *Owner, opts ..
 	return out, nil
 }
 
+func (c *ownerServiceClient) GetOwnerByColumnItem(ctx context.Context, in *GetByColumnItemReq, opts ...grpc.CallOption) (*Owner, error) {
+	out := new(Owner)
+	err := c.cc.Invoke(ctx, "/hotel.OwnerService/GetOwnerByColumnItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ownerServiceClient) GetAllOwner(ctx context.Context, in *GetAllReq, opts ...grpc.CallOption) (*GetAllRes, error) {
+	out := new(GetAllRes)
+	err := c.cc.Invoke(ctx, "/hotel.OwnerService/GetAllOwner", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OwnerServiceServer is the server API for OwnerService service.
 type OwnerServiceServer interface {
 	CreateOwner(context.Context, *Owner) (*Owner, error)
+	GetOwnerByColumnItem(context.Context, *GetByColumnItemReq) (*Owner, error)
+	GetAllOwner(context.Context, *GetAllReq) (*GetAllRes, error)
 }
 
 // UnimplementedOwnerServiceServer can be embedded to have forward compatible implementations.
@@ -534,6 +677,12 @@ type UnimplementedOwnerServiceServer struct {
 
 func (*UnimplementedOwnerServiceServer) CreateOwner(ctx context.Context, req *Owner) (*Owner, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOwner not implemented")
+}
+func (*UnimplementedOwnerServiceServer) GetOwnerByColumnItem(ctx context.Context, req *GetByColumnItemReq) (*Owner, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOwnerByColumnItem not implemented")
+}
+func (*UnimplementedOwnerServiceServer) GetAllOwner(ctx context.Context, req *GetAllReq) (*GetAllRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllOwner not implemented")
 }
 
 func RegisterOwnerServiceServer(s *grpc.Server, srv OwnerServiceServer) {
@@ -558,6 +707,42 @@ func _OwnerService_CreateOwner_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OwnerService_GetOwnerByColumnItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByColumnItemReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OwnerServiceServer).GetOwnerByColumnItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hotel.OwnerService/GetOwnerByColumnItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OwnerServiceServer).GetOwnerByColumnItem(ctx, req.(*GetByColumnItemReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OwnerService_GetAllOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAllReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OwnerServiceServer).GetAllOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hotel.OwnerService/GetAllOwner",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OwnerServiceServer).GetAllOwner(ctx, req.(*GetAllReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _OwnerService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hotel.OwnerService",
 	HandlerType: (*OwnerServiceServer)(nil),
@@ -565,6 +750,14 @@ var _OwnerService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateOwner",
 			Handler:    _OwnerService_CreateOwner_Handler,
+		},
+		{
+			MethodName: "GetOwnerByColumnItem",
+			Handler:    _OwnerService_GetOwnerByColumnItem_Handler,
+		},
+		{
+			MethodName: "GetAllOwner",
+			Handler:    _OwnerService_GetAllOwner_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -576,6 +769,7 @@ var _OwnerService_serviceDesc = grpc.ServiceDesc{
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type HotelServiceClient interface {
 	CreateHotel(ctx context.Context, in *Hotel, opts ...grpc.CallOption) (*Hotel, error)
+	CreateRoom(ctx context.Context, in *Room, opts ...grpc.CallOption) (*Room, error)
 }
 
 type hotelServiceClient struct {
@@ -595,9 +789,19 @@ func (c *hotelServiceClient) CreateHotel(ctx context.Context, in *Hotel, opts ..
 	return out, nil
 }
 
+func (c *hotelServiceClient) CreateRoom(ctx context.Context, in *Room, opts ...grpc.CallOption) (*Room, error) {
+	out := new(Room)
+	err := c.cc.Invoke(ctx, "/hotel.HotelService/CreateRoom", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HotelServiceServer is the server API for HotelService service.
 type HotelServiceServer interface {
 	CreateHotel(context.Context, *Hotel) (*Hotel, error)
+	CreateRoom(context.Context, *Room) (*Room, error)
 }
 
 // UnimplementedHotelServiceServer can be embedded to have forward compatible implementations.
@@ -606,6 +810,9 @@ type UnimplementedHotelServiceServer struct {
 
 func (*UnimplementedHotelServiceServer) CreateHotel(ctx context.Context, req *Hotel) (*Hotel, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateHotel not implemented")
+}
+func (*UnimplementedHotelServiceServer) CreateRoom(ctx context.Context, req *Room) (*Room, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRoom not implemented")
 }
 
 func RegisterHotelServiceServer(s *grpc.Server, srv HotelServiceServer) {
@@ -630,6 +837,24 @@ func _HotelService_CreateHotel_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HotelService_CreateRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Room)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HotelServiceServer).CreateRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hotel.HotelService/CreateRoom",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HotelServiceServer).CreateRoom(ctx, req.(*Room))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _HotelService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hotel.HotelService",
 	HandlerType: (*HotelServiceServer)(nil),
@@ -638,9 +863,96 @@ var _HotelService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "CreateHotel",
 			Handler:    _HotelService_CreateHotel_Handler,
 		},
+		{
+			MethodName: "CreateRoom",
+			Handler:    _HotelService_CreateRoom_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "hotel_proto/hotel.proto",
+}
+
+func (m *Room) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Room) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Room) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Discount) > 0 {
+		i -= len(m.Discount)
+		copy(dAtA[i:], m.Discount)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Discount)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.NumberOfRooms) > 0 {
+		i -= len(m.NumberOfRooms)
+		copy(dAtA[i:], m.NumberOfRooms)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.NumberOfRooms)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.FreeDays) > 0 {
+		i -= len(m.FreeDays)
+		copy(dAtA[i:], m.FreeDays)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.FreeDays)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Holidays) > 0 {
+		i -= len(m.Holidays)
+		copy(dAtA[i:], m.Holidays)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Holidays)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Description) > 0 {
+		i -= len(m.Description)
+		copy(dAtA[i:], m.Description)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Description)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Price) > 0 {
+		i -= len(m.Price)
+		copy(dAtA[i:], m.Price)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Price)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.HotelId) > 0 {
+		i -= len(m.HotelId)
+		copy(dAtA[i:], m.HotelId)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.HotelId)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.Id)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *Hotel) Marshal() (dAtA []byte, err error) {
@@ -672,12 +984,19 @@ func (m *Hotel) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.UpdatedAt)
 		i = encodeVarintHotel(dAtA, i, uint64(len(m.UpdatedAt)))
 		i--
-		dAtA[i] = 0x62
+		dAtA[i] = 0x6a
 	}
 	if len(m.CreatedAt) > 0 {
 		i -= len(m.CreatedAt)
 		copy(dAtA[i:], m.CreatedAt)
 		i = encodeVarintHotel(dAtA, i, uint64(len(m.CreatedAt)))
+		i--
+		dAtA[i] = 0x62
+	}
+	if len(m.OwnerId) > 0 {
+		i -= len(m.OwnerId)
+		copy(dAtA[i:], m.OwnerId)
+		i = encodeVarintHotel(dAtA, i, uint64(len(m.OwnerId)))
 		i--
 		dAtA[i] = 0x5a
 	}
@@ -754,7 +1073,7 @@ func (m *Hotel) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *GetAllOwnerRes) Marshal() (dAtA []byte, err error) {
+func (m *GetAllRes) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -764,12 +1083,12 @@ func (m *GetAllOwnerRes) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetAllOwnerRes) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetAllRes) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetAllOwnerRes) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetAllRes) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -795,7 +1114,7 @@ func (m *GetAllOwnerRes) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *GetAllOwnerReq) Marshal() (dAtA []byte, err error) {
+func (m *GetAllReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -805,12 +1124,12 @@ func (m *GetAllOwnerReq) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetAllOwnerReq) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetAllReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetAllOwnerReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetAllReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -832,7 +1151,7 @@ func (m *GetAllOwnerReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *GetOwnerByColumnItemReq) Marshal() (dAtA []byte, err error) {
+func (m *GetByColumnItemReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -842,12 +1161,12 @@ func (m *GetOwnerByColumnItemReq) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetOwnerByColumnItemReq) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetByColumnItemReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetOwnerByColumnItemReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetByColumnItemReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -988,6 +1307,50 @@ func encodeVarintHotel(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func (m *Room) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Id)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.HotelId)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Price)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Description)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Holidays)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.FreeDays)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.NumberOfRooms)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	l = len(m.Discount)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
 func (m *Hotel) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1034,6 +1397,10 @@ func (m *Hotel) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovHotel(uint64(l))
 	}
+	l = len(m.OwnerId)
+	if l > 0 {
+		n += 1 + l + sovHotel(uint64(l))
+	}
 	l = len(m.CreatedAt)
 	if l > 0 {
 		n += 1 + l + sovHotel(uint64(l))
@@ -1048,7 +1415,7 @@ func (m *Hotel) Size() (n int) {
 	return n
 }
 
-func (m *GetAllOwnerRes) Size() (n int) {
+func (m *GetAllRes) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1066,7 +1433,7 @@ func (m *GetAllOwnerRes) Size() (n int) {
 	return n
 }
 
-func (m *GetAllOwnerReq) Size() (n int) {
+func (m *GetAllReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1084,7 +1451,7 @@ func (m *GetAllOwnerReq) Size() (n int) {
 	return n
 }
 
-func (m *GetOwnerByColumnItemReq) Size() (n int) {
+func (m *GetByColumnItemReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1165,6 +1532,313 @@ func sovHotel(x uint64) (n int) {
 }
 func sozHotel(x uint64) (n int) {
 	return sovHotel(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *Room) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowHotel
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Room: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Room: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Id = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field HotelId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.HotelId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Price = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Description = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Holidays", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Holidays = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FreeDays", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FreeDays = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NumberOfRooms", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NumberOfRooms = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Discount", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Discount = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipHotel(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *Hotel) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
@@ -1517,6 +2191,38 @@ func (m *Hotel) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 11:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OwnerId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowHotel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthHotel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthHotel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OwnerId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 12:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
 			}
 			var stringLen uint64
@@ -1547,7 +2253,7 @@ func (m *Hotel) Unmarshal(dAtA []byte) error {
 			}
 			m.CreatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 12:
+		case 13:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpdatedAt", wireType)
 			}
@@ -1601,7 +2307,7 @@ func (m *Hotel) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetAllOwnerRes) Unmarshal(dAtA []byte) error {
+func (m *GetAllRes) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1624,10 +2330,10 @@ func (m *GetAllOwnerRes) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetAllOwnerRes: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetAllRes: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetAllOwnerRes: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetAllRes: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1686,7 +2392,7 @@ func (m *GetAllOwnerRes) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetAllOwnerReq) Unmarshal(dAtA []byte) error {
+func (m *GetAllReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1709,10 +2415,10 @@ func (m *GetAllOwnerReq) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetAllOwnerReq: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetAllReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetAllOwnerReq: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetAllReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1775,7 +2481,7 @@ func (m *GetAllOwnerReq) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetOwnerByColumnItemReq) Unmarshal(dAtA []byte) error {
+func (m *GetByColumnItemReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1798,10 +2504,10 @@ func (m *GetOwnerByColumnItemReq) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetOwnerByColumnItemReq: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetByColumnItemReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetOwnerByColumnItemReq: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetByColumnItemReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

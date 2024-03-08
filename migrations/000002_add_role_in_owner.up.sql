@@ -1,1 +1,0 @@
-ALTER TABLE owner ADD role VARCHAR(255);
